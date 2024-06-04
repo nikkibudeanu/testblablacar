@@ -1,0 +1,16 @@
+{
+  "blueprints": [
+    {
+      "invoke": "lightTokens.pr",
+      "write_using": "ts-index-light.pr"
+    },
+    {
+      "invoke": "darkTokens.pr",
+      "write_using": "ts-index-dark.pr"
+    },
+    {
+      "invoke": "dictionary.pr",
+      "write_using": "ts-dictionnary-with-path.pr"
+    }
+  ]
+}

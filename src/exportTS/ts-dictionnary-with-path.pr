@@ -1,0 +1,3 @@
+{[ const designSystem = ds.currentDesignSystem() /]}
+{[ const filename = "tokenCollection.ts" /]}
+{{ filename }}

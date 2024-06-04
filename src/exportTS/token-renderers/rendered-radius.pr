@@ -1,0 +1,8 @@
+{*
+
+This only work for radii. They must be defined within Supernova.
+
+*}
+{[ inject "reference-wrapper" context context ]}
+{[ inject "rendered-measure" context context.radius /]}
+{[/]}

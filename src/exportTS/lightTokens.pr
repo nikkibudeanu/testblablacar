@@ -1,0 +1,93 @@
+/* eslint-disable */
+{[ let brand = ds.currentBrand() /]}
+{[ let groups = ds.tokenGroupsOfType("Text", brand.id) /]}
+const border = {
+{[ const borderStyleTokens = filterByGroupName(ds.tokensByType("Text", brand.id), groups, "borderStyle") /]}
+{[ for token in borderStyleTokens ]}
+{[ inject "rendered-token-var-light" context token /]}
+{[/]}
+}
+
+const borderWidth = {
+{[ for token in ds.tokensByType("Measure", brand.id) ]}
+
+{[ let tokenGroup = ds.tokenGroupContainingTokenId(token.id) /]}
+{[ let isSize = isInGroup(token, tokenGroup, ['Border Width']) /]}
+{[ if isSize ]}{[ inject "rendered-token-var-light" context token /]}{[/]}
+{[/]}
+}
+
+const color = {
+{[ for token in ds.tokensByType("Color", brand.id) ]}
+{[ inject "rendered-token-var-light" context token /]}{[/]}
+
+{[ for token in ds.tokensByType("Gradient", brand.id) ]}
+{[ inject "rendered-token-var-light" context token /]}{[/]}
+}
+
+const measure = {
+  size: {
+{[ for token in ds.tokensByType("Measure", brand.id) ]}
+
+{[ let tokenGroup = ds.tokenGroupContainingTokenId(token.id) /]}
+{[ let isSize = isInGroup(token, tokenGroup, ['Sizing']) /]}
+{[ if isSize ]}{[ inject "rendered-token-var-light" context token /]}{[/]}
+{[/]}
+  },
+  spacing: {
+{[ for token in ds.tokensByType("Measure", brand.id) ]}
+
+{[ let tokenGroup = ds.tokenGroupContainingTokenId(token.id) /]}
+{[ let isSpacing = isInGroup(token, tokenGroup, ['Spacing']) /]}
+{[ if isSpacing ]}{[ inject "rendered-token-var-light" context token /]}{[/]}
+{[/]}
+  },{*
+  custom: {
+{[ for token in ds.tokensByType("Measure", brand.id) ]}
+
+{[ let tokenGroup = ds.tokenGroupContainingTokenId(token.id) /]}
+{[ let isCustom = !isInGroup(token, tokenGroup, ['grid', 'size', 'spacing']) /]}
+{[ if isCustom ]}{[ inject "rendered-token-var-light" context token /]}{[/]}
+{[/]}
+  },*}
+}
+
+const shadow = {
+{[ for token in ds.tokensByType("Shadow", brand.id) ]}
+{[ inject "rendered-token-var-light" context token /]}{[/]}
+}
+
+const font = {
+{[ const allTokens = ds.tokensByType("Typography", brand.id) /]}
+{[ for token in allTokens ]}
+{[ if !token.referencedToken ]}
+{[ inject "rendered-token-var-light" context token /]}
+{[/]}{[/]}
+}
+
+const radius = {
+{[ for token in ds.tokensByType("Measure", brand.id) ]}
+
+{[ let tokenGroup = ds.tokenGroupContainingTokenId(token.id) /]}
+{[ let isSize = isInGroup(token, tokenGroup, ['Border Radius']) /]}
+{[ if isSize ]}{[ inject "rendered-token-var-light" context token /]}{[/]}
+{[/]}
+}
+
+const breakpoint = {
+{[ const breakpointTokens = filterByGroupName(ds.tokensByType("Text", brand.id), groups, "breakpoint") /]}
+{[ for token in breakpointTokens ]}
+{[ inject "rendered-token-var-light" context token /]}
+{[/]}
+}
+
+export const tokens = {
+  border,
+  borderWidth,
+  color,
+  measure,
+  shadow,
+  font,
+  radius,
+  breakpoint,
+}

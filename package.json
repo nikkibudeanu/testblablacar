@@ -1,0 +1,6 @@
+{
+  "name": "@blablacar/tokens-extractor-kairos",
+  "version": "1.0.0",
+  "sideEffects": false,
+  "private": true
+}
